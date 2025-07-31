@@ -22,13 +22,4 @@ class StoreAppointmentRequest extends FormRequest
     }
 }
 
-// UpdateAppointmentRequest.php
-class UpdateAppointmentRequest extends FormRequest
-{
-    public function rules()
-    {
-        return [
-            'statut' => 'required|in:en_attente,confirmé,annulé',
-        ];
-    }
-}
+

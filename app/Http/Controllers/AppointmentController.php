@@ -63,7 +63,7 @@ class AppointmentController extends Controller
             'commentaire' => $request->commentaire,
         ]);
 
-        //SendAppointmentNotification::dispatch($appointment);
+        SendAppointmentNotification::dispatch($appointment);
 
         return new AppointmentResource($appointment);
     }
