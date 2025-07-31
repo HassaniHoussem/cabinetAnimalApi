@@ -14,5 +14,5 @@ API REST pour la gestion des rendez-vous d'un cabinet vétérinaire développée
 
 1. **Cloner le dépôt** :
    ```bash
-   git clone https://github.com/votre-utilisateur/laravel-cabinet-animalier.git
-   cd laravel-cabinet-animalier
+   git clone https://github.com/HassaniHoussem/cabinetAnimalApi
+   cd cabinetAnimalApi
