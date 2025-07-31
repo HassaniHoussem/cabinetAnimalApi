@@ -1,0 +1,300 @@
+type: collection.insomnia.rest/5.0
+name: Cabinet Animalier
+meta:
+  id: wrk_60948b618aaa4dc3a1da5ec6eccd63b2
+  created: 1753964699176
+  modified: 1753964699176
+  description: ""
+collection:
+  - url: http://localhost:8000/api/register
+    name: Register
+    meta:
+      id: req_b2480cfd34da45709c7e4dd2b7013af3
+      created: 1753964718385
+      modified: 1753964893391
+      isPrivate: false
+      description: ""
+      sortKey: -1753964718385
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "houssem",
+          "email": "houssem@gmail.com",
+          "password": "Azerty1998@",
+        	"password_confirmation": "Azerty1998@"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/login
+    name: Login
+    meta:
+      id: req_1e112b6ce4ff444fa559c10e45c7ea97
+      created: 1753964906821
+      modified: 1753964997697
+      isPrivate: false
+      description: ""
+      sortKey: -1753964906821
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "email": "houssem@gmail.com",
+          "password": "Azerty1998@"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/appointments
+    name: All Appointments
+    meta:
+      id: req_3d3a6b714c6e4e6596539e31dfe60b13
+      created: 1753965078043
+      modified: 1753967277105
+      isPrivate: false
+      description: |-
+        ## Fonctionnalités
+        - Retourne une liste paginée de rendez-vous (10 par page par défaut)
+        - Charge les relations animal et service (eager loading)
+        - Supporte plusieurs filtres :
+          * Par date exacte
+          * Par client_id
+          * Par service_id
+
+        ## Codes de réponse
+        - 200 OK : Liste retournée avec succès
+        - 401 Unauthorized : Authentification requise
+        - 422 Unprocessable Entity : Paramètres de filtrage invalides
+      sortKey: -1753965078043
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.4.0
+    authentication:
+      type: bearer
+      token: 1|9ySdq9eOl02HF3YU9ItxFtfPvKPBy152hzqVi27d43f390d4
+      prefix: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/appointments/1
+    name: Show Appointments with Id
+    meta:
+      id: req_2726692c44924c97bfa605f79c0a89b7
+      created: 1753966125339
+      modified: 1753967181729
+      isPrivate: false
+      description: >-
+        ## Fonctionnalité
+
+        Cet endpoint retourne une représentation complète d'un rendez-vous
+        spécifique avec :
+
+        - Les détails du rendez-vous (date, statut, commentaire)
+
+        - Les informations de l'animal concerné
+
+        - Les détails du service réservé
+
+        - Les informations du client associé
+
+        ## Codes de réponse
+
+        - 200 OK : Rendez-vous trouvé et retourné
+
+        - 404 Not Found : Rendez-vous non trouvé
+
+        - 401 Unauthorized : Authentification requise
+      sortKey: -1753966125339
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/appointments
+    name: creer appointments
+    meta:
+      id: req_8dd605d0c5f741c3b7a707de5bbdfa1a
+      created: 1753966187148
+      modified: 1753967107043
+      isPrivate: false
+      description: >-
+        ## Fonctionnalité
+
+        Ce endpoint permet de créer un nouveau rendez-vous en vérifiant les
+        contraintes suivantes :
+
+        - Empêche les doubles réservations pour le même animal à la même heure
+
+        - Crée automatiquement le client s'il nexiste pas
+
+        - Crée automatiquement l'animal s'il nexiste pas
+
+        - Le statut initial est toujours "en_attente"
+
+
+        ## Codes de réponse
+
+        - 201 Created : Rendez-vous créé avec succès
+
+        - 400 Bad Request : Conflit de rendez-vous
+
+        - 422 Unprocessable Entity : Erreur de validation
+
+        - 401 Unauthorized : Authentification requise
+      sortKey: -1753966187148
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"client_nom" : "Martin Dupont",
+          "client_email" : "martin.dupont@example.com",
+          "client_telephone" :"0612345678" ,
+          "animal_nom" :"Rex" ,
+          "animal_espece" : "Chien",
+          "animal_date_naissance": "2018-05-15",
+          "service_id" :1,
+          "date_heure" : "2025-08-09 12:40:08"
+           }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/appointments/1
+    name: edit
+    meta:
+      id: req_093725cd6592410bb3fc7fc94456b862
+      created: 1753967313799
+      modified: 1753967934613
+      isPrivate: false
+      description: >-
+        ## Fonctionnalité
+
+        Ce endpoint permet de mettre à jour le statut d'un rendez-vous existant
+        avec les caractéristiques suivantes :
+
+        - Seul le champ statut peut être modifié
+
+        - Le statut doit être l'une des valeurs autorisées
+        		(en_attente, confirmé, annulé)
+        - Renvoie la représentation complète du rendez-vous mis à jour avec ses
+        relations (animal, service)
+
+        ## Codes de réponse
+
+        - 200 OK : Mise  à jour reussie
+
+        - 403 Forbidden : L'utilisateur n'a pas le droit de modifier ce
+        rendez-vous
+
+        - 404 Not Found : Le rendez-vous spécifié n'existe pas
+
+        - 401 Unauthorized : Authentification requise
+
+        - 422 Unprocessable Entity:	statut invalide
+      sortKey: -1753967313799
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "statut": "confirmé"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.4.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_e79ccd77de436347c1df8e95563ffc9fc1604c33
+    created: 1753964699189
+    modified: 1753966073659
+  cookies:
+    - key: XSRF-TOKEN
+      value: eyJpdiI6ImVZNEJaSjdoT0F2M2Y5WnY1ZmJwbUE9PSIsInZhbHVlIjoiTDUxOEo0c1lGSkx0K0w2U1ROQzJ3b2NmQ3VZV2lYUERzL2lzRzV2RnJmYlpEajgxejB5SEFKSzJ2UndSbitTUWZ0djk2U2VmQlQ5YTBpeVlKSStxRGtDT3c0SEZFNkdLU2N3MmwwZGJadTAxeFBxWC9ROENnTzZKQU5sK0prZFUiLCJtYWMiOiI2MTIwNjc2N2QwZGI0ODc4NTViMjViNTM4MWI3MzQ0MmNkZmM4Y2VmZTEyNmIzOWIzZTkzMmFiNzY0ZmEzYzlmIiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      hostOnly: true
+      creation: 2025-07-31T12:41:48.939Z
+      lastAccessed: 2025-07-31T12:47:53.658Z
+      sameSite: lax
+      id: 6d758d11-cdee-47a1-87f0-5e2118ced433
+    - key: laravel_session
+      value: eyJpdiI6IkZZbFZmSTBPUk00TGhZM2pHWDhwakE9PSIsInZhbHVlIjoib3ZjdSt0K2dRejFHbk54cnJRQ3hVZVlhc213YnplY0tQUm5YN2pFd1hGd3Bud3pyTiszZS96S1IrcmRDRHp3bXhnRDdWbjdFOUFVZGVoeTJnZjNPY25ralNtVzA0aTE2MWVVV0pxMjB5dHQ5Z1NsOWZKaUlqQ2NuV1FLRmRENGMiLCJtYWMiOiIzMTU3ZjgxODlmNzBiOTA0YmYxZGZjNTM4NTcwM2FlZDAzMGNjMGQ4YjE4NDIyZjNjNDgxMWI5MDM4OWUyZDk5IiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-31T12:41:48.941Z
+      lastAccessed: 2025-07-31T12:47:53.658Z
+      sameSite: lax
+      id: 588c308c-4dfc-4644-9b00-c5db91818939
+environments:
+  name: Base Environment
+  meta:
+    id: env_e79ccd77de436347c1df8e95563ffc9fc1604c33
+    created: 1753964699183
+    modified: 1753964699183
+    isPrivate: false
